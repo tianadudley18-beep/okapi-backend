@@ -30,6 +30,7 @@ app.use((req, _res, next) => {
 const corsOptions = {
   origin: [
     'http://localhost:5173',
+    'https://okapikpi.vercel.app',
     'https://okapi-frontend.vercel.app',
     process.env.FRONTEND_URL,
   ].filter(Boolean),
