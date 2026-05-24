@@ -27,10 +27,15 @@ app.use((req, _res, next) => {
   next()
 })
 
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+const corsOptions = {
+  origin: [
+    'http://localhost:5173',
+    'https://okapi-frontend.vercel.app',
+    process.env.FRONTEND_URL,
+  ].filter(Boolean),
   credentials: true,
-}))
+}
+app.use(cors(corsOptions))
 
 // Raw body for Stripe webhooks
 app.use('/api/payments/webhook', express.raw({ type: 'application/json' }))
